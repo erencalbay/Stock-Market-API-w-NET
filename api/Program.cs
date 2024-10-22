@@ -76,7 +76,7 @@ builder.Services.AddAuthentication(options => {
     {
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidateAudience = true,
+        ValidateAudience = false,
         ValidAudience = builder.Configuration["Jwt:Audince"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
@@ -88,6 +88,8 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
